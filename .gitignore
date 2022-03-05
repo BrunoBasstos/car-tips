@@ -17,3 +17,6 @@ yarn-error.log
 
 #custom
 /!src/
+/public/css
+/public/js
+/public/mix-manifest.json
