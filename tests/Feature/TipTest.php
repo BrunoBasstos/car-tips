@@ -19,9 +19,7 @@ class TipTest extends TestCase
     public function users_can_store_tips()
     {
         $user = User::factory()->createOne();
-
         $vehicle = Vehicle::factory()->createOne();
-
         $tag = Tag::factory()->createOne();
 
         $data = [
