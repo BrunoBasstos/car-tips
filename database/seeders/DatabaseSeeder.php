@@ -13,8 +13,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-
         $this->call([
+            UserSeeder::class,
             TypeSeeder::class,
             MakeSeeder::class,
             ModelSeeder::class,
@@ -22,7 +22,6 @@ class DatabaseSeeder extends Seeder
             TagSeeder::class,
             VehicleSeeder::class
         ]);
-
     }
 
 }
