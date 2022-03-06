@@ -2,7 +2,9 @@
     <x-auth-card>
         <x-slot name="logo">
             <a href="/">
-                <x-application-logo class="fill-current text-gray-500" />
+                <x-application-logo class="fill-current text-gray-500">
+                    Car Tips®
+                </x-application-logo>
             </a>
         </x-slot>
 
