@@ -28,9 +28,8 @@ class TipTest extends TestCase
             'tag_id' => $tag->id
         ];
 
-        $this->actingAs($user);
-
-        $this->post(route('tips.store'), $data)
+        $this->actingAs($user)
+            ->post(route('tips.store'), $data)
             ->assertStatus(Response::HTTP_CREATED)
             ->assertJson($data);
 
