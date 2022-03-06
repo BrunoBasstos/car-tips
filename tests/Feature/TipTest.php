@@ -6,7 +6,6 @@ use App\Models\Tag;
 use App\Models\User;
 use App\Models\Vehicle;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Http\Response;
 use Tests\TestCase;
 
@@ -28,13 +27,14 @@ class TipTest extends TestCase
         $data = [
             'content' => 'Testando inserção de dicas',
             'vehicle_id' => $vehicle->id,
-            'tag' => $tag->id
+            'tag_id' => $tag->id
         ];
 
         $this->actingAs($user);
 
         $this->post(route('tips.store'), $data)
-            ->assertStatus(Response::HTTP_CREATED);
+            ->assertStatus(Response::HTTP_CREATED)
+            ->assertJson($data);
 
         $this->assertDatabaseHas('tips', $data);
     }
