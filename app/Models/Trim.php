@@ -11,6 +11,8 @@ class Trim extends Model
     use HasFactory;
     use ScopeActive;
 
+    protected $guarded = [];
+
     public function vehicles()
     {
         return $this->hasMany(Vehicle::class);

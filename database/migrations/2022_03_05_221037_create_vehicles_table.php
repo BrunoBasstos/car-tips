@@ -19,10 +19,12 @@ return new class extends Migration
         Schema::create('vehicles', function (Blueprint $table) {
             $table->id();
             $table->boolean('active')->default(true);
-            $table->foreignIdFor(Type::class)->index();
-            $table->foreignIdFor(Model::class)->index();
-            $table->foreignIdFor(Trim::class)->nullable()->default(null)->index();
+            $table->foreignIdFor(Type::class)->constrained();
+            $table->foreignIdFor(Model::class)->constrained();
+            $table->foreignIdFor(Trim::class)->nullable()->default(null)->constrained();
             $table->timestamps();
+
+            $table->unique(['type_id', 'model_id', 'trim_id'], 'unique_type_model_trim');
         });
     }
 
