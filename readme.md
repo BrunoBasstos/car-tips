@@ -60,9 +60,7 @@ In order t run the tests. call the comand bellow from your console:
 ./vendor/bin/sail artisan test
 ```
 
-![img_1.png](img_1.png)
-
-![img.png](img.png)
+![image](https://user-images.githubusercontent.com/5402439/157088407-5f5106da-e593-4965-8c2f-a790f058e741.png)
 
 
 ###6.Try it out
