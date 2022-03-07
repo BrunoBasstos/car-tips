@@ -12,7 +12,7 @@ class Show extends Component
 
     public function render()
     {
-        return view('livewire.tips.modal', [
+        return view('livewire.tips.modal-lw', [
             'tip' => $this->tip
         ]);
     }
