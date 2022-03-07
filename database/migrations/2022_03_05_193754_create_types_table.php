@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('types', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
+            $table->string('css_color');
             $table->boolean('active')->default(true);
             $table->timestamps();
         });

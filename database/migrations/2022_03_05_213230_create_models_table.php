@@ -16,9 +16,9 @@ return new class extends Migration
     {
         Schema::create('models', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name')->index();
             $table->boolean('active')->default(true);
-            $table->foreignIdFor(Make::class)->constrained();
+            $table->foreignIdFor(Make::class)->index();
             $table->timestamps();
         });
     }

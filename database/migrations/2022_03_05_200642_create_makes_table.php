@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('makes', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
+            $table->string('name')->unique()->index();
             $table->boolean('active')->default(true);
             $table->timestamps();
         });
