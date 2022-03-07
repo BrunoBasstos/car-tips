@@ -57,7 +57,7 @@ class TipTest extends TestCase
     {
         $tip = [
             'content' => Str::random(15),
-            'user_id' => 1,
+            'user_id' => 999,
             'vehicle_id' => Vehicle::factory()->createOne()->id,
             'tag_id' => null
         ];
