@@ -2,43 +2,50 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Make;
+use App\Models\Model;
+use App\Models\Tag;
 use App\Models\Tip;
+use App\Models\Trim;
+use App\Models\Type;
+use App\Models\Vehicle;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class TipController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        //
+        $tips = Tip::all();
+
+        return view('dashboard', compact('tips'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        $types = Type::active()->get();
+        $makes = Make::active()->get();
+        $models = Model::active()->get();
+        $trims = Trim::active()->get();
+        $tags = Tag::active()->get();
+        $vehicles = Vehicle::active()->get();
+
+        return view('tips.create', compact('types', 'models', 'makes', 'trims', 'tags', 'vehicles'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return Response
      */
     public function store(Request $request)
     {
         $validData = $request->validate([
-            'content' => ['required', 'string'],
+            'content'    => ['required', 'string'],
             'vehicle_id' => ['required', 'integer', 'exists:vehicles,id'],
-            'tag_id' => ['nullable', 'integer', 'exists:tags,id']
+            'tag_id'     => ['nullable', 'integer', 'exists:tags,id']
         ]);
 
         $tip = $request->user()
@@ -48,22 +55,16 @@ class TipController extends Controller
         return $tip;
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
-        //
+        return view('livewire.tips.show', ['tip' => Tip::find($id)]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return Response
      */
     public function edit($id)
     {
@@ -73,9 +74,9 @@ class TipController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param int $id
+     * @return Response
      */
     public function update(Request $request, $id)
     {
@@ -85,8 +86,8 @@ class TipController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return Response
      */
     public function destroy($id)
     {
