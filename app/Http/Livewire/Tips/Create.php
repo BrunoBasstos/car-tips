@@ -5,10 +5,12 @@ namespace App\Http\Livewire\Tips;
 use App\Http\Livewire\LoadCombos;
 use App\Models\Tip;
 use App\Models\Vehicle;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Livewire\Component;
 
 class Create extends Component
 {
+    use AuthorizesRequests;
     use LoadCombos;
 
     public string $tela = 'create';
@@ -42,7 +44,8 @@ class Create extends Component
 
     public function save()
     {
-        if ($valid = $this->validate()) {
+        $this->authorize('create', Tip::class);
+        if ($this->validate()) {
             $vehicle = Vehicle::firstOrCreate(
                 [
                     'type_id'  => $this->typeFilter,
@@ -52,9 +55,9 @@ class Create extends Component
             );
 
             Tip::create([
-                'content' => $this->content,
-                'user_id' => auth()->user()->id,
-                'tag_id'  => $this->tagFilter?->id ?? null,
+                'content'    => $this->content,
+                'user_id'    => auth()->user()->id,
+                'tag_id'     => $this->tagFilter?->id ?? null,
                 'vehicle_id' => $vehicle->id
             ]);
 

@@ -14,6 +14,7 @@ class TipController extends Controller
 
     public function create()
     {
+        $this->authorize('create', Tip::class);
         return view('tips.create');
     }
 

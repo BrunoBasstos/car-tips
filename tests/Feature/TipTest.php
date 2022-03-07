@@ -2,11 +2,15 @@
 
 namespace Tests\Feature;
 
-use App\Models\Tag;
+use App\Http\Livewire\Tips\Create;
+use App\Http\Livewire\Tips\Update;
+use App\Models\Model;
+use App\Models\Tip;
+use App\Models\Trim;
+use App\Models\Type;
 use App\Models\User;
-use App\Models\Vehicle;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Http\Response;
+use Livewire\Livewire;
 use Tests\TestCase;
 
 class TipTest extends TestCase
@@ -16,23 +20,52 @@ class TipTest extends TestCase
     /**
      * @test
      */
-    public function users_can_store_tips()
+    /** @test */
+    function users_can_create_tips()
     {
-        $user = User::factory()->createOne();
-        $vehicle = Vehicle::factory()->createOne();
-        $tag = Tag::factory()->createOne();
+        $this->actingAs(User::factory()->create());
 
-        $data = [
-            'content' => 'Testando inserção de dicas',
-            'vehicle_id' => $vehicle->id,
-            'tag_id' => $tag->id
-        ];
+        $content = 'Testeando com Livewire';
 
-        $this->actingAs($user)
-            ->post(route('tips.store'), $data)
-            ->assertStatus(Response::HTTP_CREATED)
-            ->assertJson($data);
+        Livewire::test(Create::class)
+            ->set('content', $content)
+            ->set('makeFilter', Type::factory()->createOne()->id)
+            ->set('typeFilter', Type::factory()->createOne()->id)
+            ->set('modelFilter', Model::factory()->createOne()->id)
+            ->set('trimFilter', Trim::factory()->createOne()->id)
+            ->call('save');
 
-        $this->assertDatabaseHas('tips', $data);
+        $this->assertTrue(Tip::where('content', $content)->exists());
     }
+
+    /** @test */
+    function tips_must_have_a_content()
+    {
+        $this->actingAs(User::factory()->create());
+
+        Livewire::test(Create::class)
+            ->set('content', '')
+            ->set('makeFilter', Type::factory()->createOne()->id)
+            ->set('typeFilter', Type::factory()->createOne()->id)
+            ->set('modelFilter', Model::factory()->createOne()->id)
+            ->set('trimFilter', Trim::factory()->createOne()->id)
+            ->call('save')
+            ->assertHasErrors(['content' => 'required']);
+    }
+
+    /** @test */
+    function only_authenticated_users_can_create_tips()
+    {
+        $content = 'Testeando com Livewire';
+
+        Livewire::test(Create::class)
+            ->set('content', $content)
+            ->set('makeFilter', Type::factory()->createOne()->id)
+            ->set('typeFilter', Type::factory()->createOne()->id)
+            ->set('modelFilter', Model::factory()->createOne()->id)
+            ->set('trimFilter', Trim::factory()->createOne()->id)
+            ->call('save')
+            ->assertForbidden();
+    }
+
 }

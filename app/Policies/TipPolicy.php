@@ -41,7 +41,7 @@ class TipPolicy
      */
     public function create(User $user)
     {
-        return $user->id ?: false;
+        return (bool)$user?->id;
     }
 
     /**
