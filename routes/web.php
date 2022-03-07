@@ -10,7 +10,7 @@ Route::get('/', HomeController::class);
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/dashboard', DashboardController::class)->name('dashboard');
 
-    Route::resource('tips', TipController::class);
+    Route::resource('tips', TipController::class)->except('store', 'delete');
 });
 
 require __DIR__ . '/auth.php';
