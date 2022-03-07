@@ -54,7 +54,7 @@ class Create extends Component
             Tip::create([
                 'content' => $this->content,
                 'user_id' => auth()->user()->id,
-                'tag_id'  => $this->tags?->id ?: null,
+                'tag_id'  => $this->tagFilter?->id ?? null,
                 'vehicle_id' => $vehicle->id
             ]);
 

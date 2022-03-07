@@ -44,7 +44,7 @@ trait LoadCombos
 
 //        dd($this->types->toSql());
 
-        $this->makes = $this->tela == 'list' || $this->typeFilter != ""
+        $this->makes = $this->tela != 'create' || $this->typeFilter != ""
             ? Make::active()
                 ->when($this->tela == 'list', fn($q) => $q->where(fn($q) => $q->whereHas('models.vehicles.tips')))
                 ->when($this->tagFilter != '',
@@ -57,7 +57,7 @@ trait LoadCombos
                 ->get()
             : null;
 
-        $this->models = $this->tela == 'list' || $this->makeFilter != ""
+        $this->models = $this->tela != 'create' || $this->makeFilter != ""
             ? Model::active()
                 ->when($this->tela == 'list', fn($q) => $q->where(fn($q) => $q->whereHas('vehicles.tips')))
                 ->when($this->tagFilter != '',
@@ -70,7 +70,7 @@ trait LoadCombos
                 ->get()
             : null;
 
-        $this->trims = $this->tela == 'list' || $this->modelFilter != ""
+        $this->trims = $this->tela != 'create' || $this->modelFilter != ""
             ? Trim::active()
                 ->when($this->tela == 'list', fn($q) => $q->where(fn($q) => $q->whereHas('vehicles.tips')))
                 ->when($this->tagFilter != '',
