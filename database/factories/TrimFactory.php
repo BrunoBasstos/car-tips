@@ -2,10 +2,11 @@
 
 namespace Database\Factories;
 
+use App\Models\Trim;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Trim>
+ * @extends Factory
  */
 class TrimFactory extends Factory
 {

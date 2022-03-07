@@ -2,10 +2,12 @@
 
 namespace Database\Factories;
 
+use App\Models\Make;
+use Faker\Provider\Fakecar;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Make>
+ * @extends Factory
  */
 class MakeFactory extends Factory
 {
@@ -16,10 +18,10 @@ class MakeFactory extends Factory
      */
     public function definition()
     {
-        $this->faker->addProvider(new \Faker\Provider\Fakecar($this->faker));
+        $this->faker->addProvider(new Fakecar($this->faker));
 
         return [
-            'name' => $this->faker->unique()->vehicleBrand,
+            'name'   => $this->faker->unique()->vehicleBrand,
             'active' => true
         ];
     }

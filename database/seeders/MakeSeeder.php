@@ -15,9 +15,45 @@ class MakeSeeder extends Seeder
      */
     public function run()
     {
-        Make::factory()
-            ->count(10)
-            ->create();
+        $csvCaminhoes = fopen(base_path("database/seeders/source-files-seeder/marcas-caminhao.csv"), "r");
+        $firstline = true;
+        while (($data = fgetcsv($csvCaminhoes, 2000, ";")) !== FALSE) {
+            if (!$firstline) {
+                Make::firstOrCreate([
+                    "id" => $data[0],
+                    "name" => $data[1]
+                ]);
+            }
+            $firstline = false;
+        }
+        fclose($csvCaminhoes);
+
+        $csvCarros = fopen(base_path("database/seeders/source-files-seeder/marcas-carros.csv"), "r");
+        $firstline = true;
+        while (($data = fgetcsv($csvCarros, 2000, ";")) !== FALSE) {
+            if (!$firstline) {
+                Make::firstOrCreate([
+                    "id" => $data[0],
+                    "name" => $data[1],
+                ]);
+            }
+            $firstline = false;
+        }
+        fclose($csvCarros);
+
+        $csvMotos = fopen(base_path("database/seeders/source-files-seeder/marcas-motos.csv"), "r");
+        $firstline = true;
+        while (($data = fgetcsv($csvMotos, 2000, ";")) !== FALSE) {
+            if (!$firstline) {
+                Make::firstOrCreate([
+                    "id" => $data[0],
+                    "name" => $data[1]
+                ]);
+            }
+            $firstline = false;
+        }
+        fclose($csvMotos);
+
     }
 
 }

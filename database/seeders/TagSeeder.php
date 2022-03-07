@@ -15,9 +15,15 @@ class TagSeeder extends Seeder
      */
     public function run()
     {
-        Tag::factory()
-            ->count(5)
-            ->create();
+        $tags = [
+            ['name' => 'manutenção', 'created_at' => now()],
+            ['name' => 'elétrica', 'created_at' => now()],
+            ['name' => 'mecânica', 'created_at' => now()],
+            ['name' => 'acessórios', 'created_at' => now()],
+            ['name' => 'segurança', 'created_at' => now()],
+        ];
+
+        Tag::query()->insert($tags);
     }
 
 }

@@ -15,9 +15,11 @@ class TrimSeeder extends Seeder
      */
     public function run()
     {
-        Trim::factory()
-            ->count(10)
-            ->create();
+        $trims = ['LT', 'LTZ', 'GL', 'GLS', 'XEI', 'SEG', 'GTX', 'GTI', 'XT', 'XTZ', 'XR3', 'XRS', 'SS', 'GT', 'AT', 'L', 'LS'];
+        foreach($trims as $trim){
+            Trim::create(['name' => $trim]);
+        }
+
     }
 
 }

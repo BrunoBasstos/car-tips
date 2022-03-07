@@ -16,13 +16,12 @@ class TypeSeeder extends Seeder
     public function run()
     {
         $types = [
-            ['name' => 'moto', 'created_at' => now()],
-            ['name' => 'carro', 'created_at' => now()],
-            ['name' => 'caminhão', 'created_at' => now()],
+            ['name' => 'moto', 'css_color' => 'green-100','created_at' => now()],
+            ['name' => 'carro', 'css_color' => 'indigo-100', 'created_at' => now()],
+            ['name' => 'caminhão', 'css_color' => 'red-100', 'created_at' => now()],
         ];
 
-        Type::query()
-            ->insert($types);
+        Type::query()->insert($types);
     }
 
 }

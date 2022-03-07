@@ -2,10 +2,14 @@
 
 namespace Database\Factories;
 
+use App\Models\Tag;
+use App\Models\Tip;
+use App\Models\User;
+use App\Models\Vehicle;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Tip>
+ * @extends Factory
  */
 class TipFactory extends Factory
 {
@@ -17,7 +21,11 @@ class TipFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'content'    => $this->faker->paragraph,
+            'user_id'    => fn() => ser::factory()->createOne()->id,
+            'vehicle_id' => fn() => Vehicle::factory()->createOne()->id,
+            'tag_id'     => fn() => Tag::factory()->createOne()->id,
+            'created_at' => $this->faker->dateTimeBetween(now(), now()->addMinute())
         ];
     }
 }
