@@ -47,11 +47,20 @@
         </div>
     </td>
     <td class="w-2">
-        <button data-tooltip-target="tooltip-div"
-                data-modal-toggle="tipModal-{{$data->id}}"
-                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded mr-2">
-            <x-icons.eye class="fill-current w-6 h-6"/>
-        </button>
+{{--        <button data-tooltip-target="tooltip-div"--}}
+{{--                data-modal-toggle="tipModal-{{$data->id}}"--}}
+{{--                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded mr-2">--}}
+{{--            <x-icons.eye class="fill-current w-6 h-6"/>--}}
+{{--        </button>--}}
+
+        @auth
+            <a href="{{route('tips.show', $data->id)}}"
+               class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded mr-2 mt-4 sm:mt-0 inline-flex items-start justify-start px-1 py-1 "
+            >
+                <x-icons.eye class="fill-current w-6 h-6"/>
+            </a>
+        @endauth
+
         <div id="tooltip-div"
              role="tooltip"
              class="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip dark:bg-gray-700">

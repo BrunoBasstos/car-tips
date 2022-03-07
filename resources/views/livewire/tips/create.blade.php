@@ -5,12 +5,9 @@
         <div class="bg-white py-4 md:py-7 px-4 md:px-8 xl:px-10">
 
             <div class="bg-white py-4 md:py-7 px-4 md:px-8 xl:px-10">
-                {{$this->tip?->content}}
+
                 <form id="cadastro"
-                      class="my-6 w-11/12 mx-auto xl:w-full xl:mx-0"
-{{--                      action="{{ route('tips.store') }}"--}}
-{{--                      method="post"--}}
-                >
+                      class="my-6 w-11/12 mx-auto xl:w-full xl:mx-0">
                     @csrf
 
                     <x-tips-grid.filters :errors="$errors"/>
@@ -36,8 +33,10 @@
                         <div
                             class="w-full py-4 sm:px-0 bg-white dark:bg-gray-800 flex justify-start">
                             <a href="{{route('tips.index')}}"
-                                    role="button" aria-label="cancel form"
-                                    class="bg-gray-200 focus:outline-none transition duration-150 ease-in-out hover:bg-gray-300 dark:bg-gray-700 rounded text-indigo-600 dark:text-indigo-600 px-6 py-2 text-xs mr-4 focus:ring-2 focus:ring-offset-2 focus:ring-gray-700">
+                               role="button" aria-label="cancel form"
+                               class="bg-gray-200 focus:outline-none transition duration-150 ease-in-out hover:bg-gray-300
+                           dark:bg-gray-700 rounded text-indigo-600 dark:text-indigo-600 px-6 py-2 text-xs mr-4
+                           focus:ring-2 focus:ring-offset-2 focus:ring-gray-700">
                                 Cancelar
                             </a>
                             <button wire:click.prevent="save"
