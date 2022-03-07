@@ -21,7 +21,7 @@ class TipFactory extends Factory
     public function definition()
     {
         return [
-            'content'    => $this->faker->paragraph,
+            'content'    => $this->faker->paragraph(50),
             'user_id'    => fn() => ser::factory()->createOne()->id,
             'vehicle_id' => fn() => Vehicle::factory()->createOne()->id,
             'tag_id'     => fn() => Tag::factory()->createOne()->id,
