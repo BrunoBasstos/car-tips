@@ -8,7 +8,6 @@ use App\Models\User;
 use App\Models\Vehicle;
 use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Http\Response;
 use Illuminate\Support\Str;
 use Tests\TestCase;
 
@@ -22,10 +21,10 @@ class TipTest extends TestCase
     public function it_can_create_tips()
     {
         $tip = [
-            'content' => Str::random(15),
-            'user_id' => User::factory()->createOne()->id,
+            'content'    => Str::random(15),
+            'user_id'    => User::factory()->createOne()->id,
             'vehicle_id' => Vehicle::factory()->createOne()->id,
-            'tag_id' => Tag::factory()->createOne()->id
+            'tag_id'     => Tag::factory()->createOne()->id
         ];
 
         Tip::create($tip);
@@ -39,10 +38,10 @@ class TipTest extends TestCase
     public function tags_can_be_null()
     {
         $tip = [
-            'content' => Str::random(15),
-            'user_id' => User::factory()->createOne()->id,
+            'content'    => Str::random(15),
+            'user_id'    => User::factory()->createOne()->id,
             'vehicle_id' => Vehicle::factory()->createOne()->id,
-            'tag_id' => null
+            'tag_id'     => null
         ];
 
         Tip::create($tip);
@@ -56,10 +55,10 @@ class TipTest extends TestCase
     public function user_must_be_a_valid_one()
     {
         $tip = [
-            'content' => Str::random(15),
-            'user_id' => 999,
+            'content'    => Str::random(15),
+            'user_id'    => 999,
             'vehicle_id' => Vehicle::factory()->createOne()->id,
-            'tag_id' => null
+            'tag_id'     => null
         ];
 
         $this->expectException(QueryException::class);
@@ -75,10 +74,10 @@ class TipTest extends TestCase
     public function vehicle_must_be_a_valid_one()
     {
         $tip = [
-            'content' => Str::random(15),
-            'user_id' => User::factory()->createOne()->id,
+            'content'    => Str::random(15),
+            'user_id'    => User::factory()->createOne()->id,
             'vehicle_id' => 1,
-            'tag_id' => null
+            'tag_id'     => null
         ];
 
         $this->expectException(QueryException::class);

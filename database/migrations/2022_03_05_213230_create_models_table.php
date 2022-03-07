@@ -18,7 +18,7 @@ return new class extends Migration
             $table->id();
             $table->string('name')->index();
             $table->boolean('active')->default(true);
-            $table->foreignIdFor(Make::class)->index();
+            $table->foreignIdFor(Make::class)->constrained();
             $table->timestamps();
         });
     }
