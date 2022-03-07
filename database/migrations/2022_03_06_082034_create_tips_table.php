@@ -19,8 +19,8 @@ return new class extends Migration
         Schema::create('tips', function (Blueprint $table) {
             $table->id();
             $table->text('content');
-            $table->foreignIdFor(User::class)->index();
-            $table->foreignIdFor(Vehicle::class)->index();
+            $table->foreignIdFor(User::class)->constrained();
+            $table->foreignIdFor(Vehicle::class)->constrained();
             $table->foreignIdFor(Tag::class)->nullable()->index();
             $table->timestamps();
         });
