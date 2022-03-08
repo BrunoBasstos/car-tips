@@ -6,11 +6,14 @@ use App\Http\Controllers\TipController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomeController::class);
+Route::get('/tips/{tip}', [TipController::class, 'showPublic'])->name('tips.show.public');
 
 Route::middleware(['auth:sanctum'])->group(function () {
+
     Route::get('/dashboard', DashboardController::class)->name('dashboard');
 
     Route::resource('tips', TipController::class)->except('store', 'delete');
+
 });
 
 require __DIR__ . '/auth.php';

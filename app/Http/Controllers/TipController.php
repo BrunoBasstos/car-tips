@@ -23,6 +23,11 @@ class TipController extends Controller
         return view('tips.show', ['tip' => $tip]);
     }
 
+    public function showPublic(Tip $tip)
+    {
+        return view('tips.show-public', ['tip' => $tip]);
+    }
+
     public function edit(Tip $tip)
     {
         return view('tips.update', compact('tip'));
