@@ -44,13 +44,24 @@
                 </div>
                 <div class="mx-auto xl:w-full ">
                     <div class="w-2/3 ml-8 py-4 sm:px-0 bg-white dark:bg-gray-800 flex justify-start">
-                        <a href="{{route('tips.index')}}"
-                           role="button" aria-label="cancel form"
-                           class="bg-gray-200 focus:outline-none transition duration-150 ease-in-out hover:bg-gray-300
+                        @auth()
+                            <a href="{{route('tips.index')}}"
+                               role="button" aria-label="cancel form"
+                               class="bg-gray-200 focus:outline-none transition duration-150 ease-in-out hover:bg-gray-300
                            dark:bg-gray-700 rounded text-indigo-600 dark:text-indigo-600 px-6 py-2 text-xs mr-4
                            focus:ring-2 focus:ring-offset-2 focus:ring-gray-700">
-                            Voltar
-                        </a>
+                                Voltar
+                            </a>
+                        @elseauth
+                            <a href="/"
+                               role="button" aria-label="cancel form"
+                               class="bg-gray-200 focus:outline-none transition duration-150 ease-in-out hover:bg-gray-300
+                           dark:bg-gray-700 rounded text-indigo-600 dark:text-indigo-600 px-6 py-2 text-xs mr-4
+                           focus:ring-2 focus:ring-offset-2 focus:ring-gray-700">
+                                Voltar
+                            </a>
+                        @endauth
+
 
                         @can('update', $tip)
                             <a href="{{route('tips.edit', $tip->id)}}"
@@ -78,5 +89,3 @@
         </div>
     </div>
 </div>
-
-

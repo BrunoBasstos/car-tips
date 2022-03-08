@@ -1,20 +1,16 @@
 <div class="p-6 border-t border-gray-200 dark:border-gray-700 w-full">
     <div class="sm:px-6 w-full">
-        <x-tips-grid.title :title="$title"/>
-
-        <div class="bg-white py-4 md:py-7 px-4 md:px-8 xl:px-10">
-
-            <div class="bg-white py-4 md:py-7 px-4 md:px-8 xl:px-10">
-
-                <form id="cadastro"
-                      class="my-6 w-11/12 mx-auto xl:w-full xl:mx-0">
+        <div class="bg-white p-4 md:px-8 xl:px-10">
+            <x-tips-grid.title :title="$title"/>
+            <div class="bg-white p-4 md:px-8 xl:px-10">
+                <form id="cadastro" class="w-11/12 mx-auto xl:w-full xl:mx-0">
                     @csrf
 
                     <x-tips-grid.filters :errors="$errors"/>
 
                     <div class="grid grid-cols-1 md:grid-cols-3 md:space-x-5 items-center">
-                        <div class="flex flex-col mb-6 md:col-span-3">
-                            <div class="flex flex-col mb-6">
+                        <div class="flex flex-col md:col-span-3">
+                            <div class="flex flex-col">
                                 <label for="content"
                                        class="pb-2 text-sm font-bold text-gray-800 dark:text-gray-100">Dica</label>
                                 <textarea tabindex="0" type="text" id="content" name="content"
