@@ -1,4 +1,5 @@
-#CAR TIPS 
+#CAR TIPS
+
 A simple project useing laravel and livewire.
 
 # Get Started
@@ -10,12 +11,12 @@ A simple project useing laravel and livewire.
 - Livewire 2x
 - Tailwind
 
-#### 1.1 At the very ending of this file, I'll let the commands sequence one should run to get the containers up and your application running.
+> **NOTE:** At the very ending of this file, I'll let the commands sequence one should run to get the containers up and your application running.
 
 ### 2.Dependencies
 
 This project uses composer and npm to manage its dependencies. Before going any further, you should update composer
-dependencies by runing the commands below:
+dependencies by runing the command below:
 
 ```
    composer update
@@ -66,17 +67,17 @@ Then we are good to go and start up our container:
 ```
 
 ##### 3.1 Conflicts
+
 If you have services running in your local machine, you may face some problemas, like ports not available.
 
 In such case, you can either temporarily stop your services or change the ports you want the containers to listen.
 
 Let's see how we could change mysql port for instance:
 
-
-   - open docker-compose.yml file
-   - locate the block related to mysql
-   - find the line which contains the ports forwards. Something like - '${FORWARD_DB_PORT:-3306}:3306'
-   - change the port, like so: - '${FORWARD_DB_PORT:-3306}:3306' to - '${FORWARD_DB_PORT:-3307}:3306'
+- open docker-compose.yml file
+- locate the block related to mysql
+- find the line which contains the ports forwards. Something like - '${FORWARD_DB_PORT:-3306}:3306'
+- change the port, like so: - '${FORWARD_DB_PORT:-3306}:3306' to - '${FORWARD_DB_PORT:-3307}:3306'
 
 ### 4. Migrations
 
@@ -87,6 +88,7 @@ After you starts up the container, you should run the migrations to create the d
 ```
 
 If you want some sample data to be seeded into the tables, you can pass the optional argument --seed
+
 
 ```
    ./vendor/bin/sail artisan migrate:fresh --seed
@@ -142,22 +144,26 @@ Send your feedback, comments, sugestions...
 
 I look forward to hearing from you!
 
-Bruno,
+Bruno.
 
 #______________________________
 
 ##GETTING STARTED SEQUENCE
 
 - ####updates dependencies
+
 >composer update
 
-- ####generates .env file
+- ####creates .env file
+
 > cp .env.example .env
 
 - ####generate app key
+
 >php artisan key:generate
 
 - ####REPLACE VARIABLES IN .env
+
 ```
 APP_URL=http://car-tips.test
 ...
@@ -170,22 +176,29 @@ DB_PASSWORD=password
 ```
 
 - ####bulid/starts the containers
+
 >./vendor/bin/sail up -d
 
 - ####migrate the database
+
 > ./vendor/bin/sail artisan migrate:fresh
 
 - ####migrate the database with data
+
 >./vendor/bin/sail artisan migrate:fresh --seed
 
 - ####updates npm dependencies within the container
+
 >./vendor/bin/sail npm update
 
 - ####publishes the assets
+
 >./vendor/bin/sail npm run dev
 
 - ####run unit and feature tests
+
 > ./vendor/bin/sail artisan test
 
 - #####browse your app
+
 >[http://localhost]()
